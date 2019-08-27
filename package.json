@@ -16,10 +16,12 @@
         "type": "git",
         "url": "https://github.com/mailtoharshit/okta-saml-node.git"
     },
-    "contributors": [{
-        "name": "Harshit Pandey",
-        "email": "mailtoharshit@gmail.com"
-    }],
+    "contributors": [
+        {
+            "name": "Harshit Pandey",
+            "email": "mailtoharshit@gmail.com"
+        }
+    ],
     "keywords": [
         "saml",
         "sso"

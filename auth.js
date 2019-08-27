@@ -8,7 +8,7 @@ var users = [];
 function findByEmail(email, fn) {
     for (var i = 0, len = users.length; i < len; i++) {
         var user = users[i];
-        if (user.email === email) {
+        if (user.Email === email) {
             return fn(null, user);
         }
     }
@@ -20,31 +20,32 @@ function findByEmail(email, fn) {
 //   serialize users into and deserialize users out of the session.  Typically,
 //   this will be as simple as storing the user ID when serializing, and finding
 //   the user by ID when deserializing.
-passport.serializeUser(function(user, done) {
-    done(null, user.email);
+passport.serializeUser(function (user, done) {
+    done(null, user.Email);
 });
 
-passport.deserializeUser(function(id, done) {
-    findByEmail(id, function(err, user) {
+passport.deserializeUser(function (id, done) {
+    findByEmail(id, function (err, user) {
         done(err, user);
     });
 });
 
 passport.use(new SamlStrategy({
-        issuer: config.auth.issuer,
-        path: '/login/callback',
-        entryPoint: config.auth.entryPoint,
-        cert: config.auth.cert
-    },
-    function(profile, done) {
+    issuer: config.auth.issuer,
+    path: '/login/callback',
+    entryPoint: config.auth.entryPoint,
+    cert: config.auth.cert
+},
+    function (profile, done) {
         console.log('Succesfully Profile' + profile);
-        if (!profile.email) {
+        if (!profile.Email) {
             return done(new Error("No email found"), null);
         }
-        process.nextTick(function() {
+        process.nextTick(function () {
             console.log('process.nextTick' + profile);
-            findByEmail(profile.email, function(err, user) {
+            findByEmail(profile.Email, function (err, user) {
                 if (err) {
+                    console.log(err)
                     return done(err);
                 }
                 if (!user) {
