@@ -10,7 +10,7 @@
         "connect": "^2.30.2",
         "express": "^3.5.3",
         "passport": "^0.2.2",
-        "passport-saml": "0.15.0"
+        "passport-saml": "3.2.2"
     },
     "repository": {
         "type": "git",
